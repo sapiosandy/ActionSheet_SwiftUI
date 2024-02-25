@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var showAction = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Button(action: {showAction.toggle()
+            }) {
+                Text("Show Action Sheet")
+            }
+            .actionSheet(isPresented: $showAction) { () -> ActionSheet in
+                ActionSheet(title: Text("Warning"), message: Text("Do you really want to delete this message?"))
+            }
         }
-        .padding()
     }
 }
 
